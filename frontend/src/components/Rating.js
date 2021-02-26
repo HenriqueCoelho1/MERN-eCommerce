@@ -2,31 +2,31 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 
-const Rating = ({ value, text, color }) => {
-    const stars = []
+const Rating = ({ value, text, starColor = "#f8e825" }) => {
+    const stars = [1, 2, 3, 4, 5].map((index) => (
+        <i
+            key={index}
+            style={{ color: starColor }}
+            className={
+                value >= index
+                    ? "fas fa-star"
+                    : value >= index - 0.5
+                        ? "fas fa-star-half-alt"
+                        : "far fa-star"
+            }
+        ></i>
+    ))
 
-    for (var i = 0; i < 5; i++) {
-        if (value - i >= 1) {
-            stars.push(<i style={{ color }} className="fas fa-star"></i>)
-        } else if (value - i > 0 && value - i < 1) {
-            stars.push(<i style={{ color }} className="fas fa-star-half-alt"></i>)
-        } else {
-            stars.push(<i style={{ color }} className="far fa-star"></i>)
-        }
-    }
     return (
         <div className="rating">
-            {stars.map((star) => (
-                <span>{star}</span>
-            ))}
-            <span>{text && text}</span>
+            <span>{stars}</span> <span>{text && text}</span>
         </div>
     )
 }
 
-Rating.defaultProps = {
-    color: "#f8e825",
-}
+// Rating.defaultProps = {
+//     color: "#f8e825",
+// }
 
 
 Rating.propsTypes = {
