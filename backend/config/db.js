@@ -9,10 +9,10 @@ const connectDB = async () => {
 
         })
 
-        console.log(`MONGO DB connected: ${conn.connection.host}`)
+        console.log(`MONGO DB connected: ${conn.connection.host}`.cyan.underline)
 
     } catch (err) {
-        console.log(`A`)
+        console.log(`Error: ${error.message}`.red.underline.bold)
         process.exit(1)
     }
 }
