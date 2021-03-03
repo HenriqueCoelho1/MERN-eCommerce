@@ -28,6 +28,7 @@ const CartScreen = ({ match, location, history }) => {
 
     const removeFromCartHandler = (id) => {
         dispatch(removeFromCart(id))
+        history.push('/cart')
     }
 
     const checkOutHandler = () => {
@@ -58,7 +59,10 @@ const CartScreen = ({ match, location, history }) => {
                                             <Form.Control
                                                 as='select'
                                                 value={item.qty}
-                                                onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value)))}>
+                                                onChange={(e) => {
+                                                    dispatch(addToCart(item.product, Number(e.target.value)))
+                                                    history.push('/cart')
+                                                }}>
                                                 {[...Array(item.countInStock).keys()].map((x) => (
                                                     <option key={x + 1} value={x + 1}>
                                                         {x + 1}
