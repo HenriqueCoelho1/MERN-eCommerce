@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import Message from '../components/Message'
-import { addToCart } from '../actions/cartActions'
+import { addToCart, removeFromCart } from '../actions/cartActions'
 
 const CartScreen = ({ match, location, history }) => {
     const productId = match.params.id
@@ -27,7 +27,7 @@ const CartScreen = ({ match, location, history }) => {
 
 
     const removeFromCartHandler = (id) => {
-        console.log('Remove')
+        dispatch(removeFromCart(id))
     }
 
     const checkOutHandler = () => {
@@ -37,8 +37,8 @@ const CartScreen = ({ match, location, history }) => {
         <Row>
             <Col md={8}>
                 <h1>Shopping Cart</h1>
-                {cartItems.length === 0 ? <Message>Your cart is empety
-                    <Link to='/'>Go Back</Link></Message> : (
+                {cartItems.length === 0 ? <Message>Your cart is empty
+                    <Link to='/'> Go Back</Link></Message> : (
                         <ListGroup variant='flush'>
                             {cartItems.map(item => (
                                 <ListGroup.Item key={item.product}>
@@ -72,8 +72,10 @@ const CartScreen = ({ match, location, history }) => {
                                             <Button
                                                 type='button'
                                                 variant='light'
-                                                onClick={() => removeFromCartHandler(item.product)}></Button>
-                                            <i className="fas fa-trash"></i>
+                                                onClick={() => removeFromCartHandler(item.product)}>
+                                                <i className="fas fa-trash"></i>
+                                            </Button>
+
                                         </Col>
                                     </Row>
 
