@@ -1,7 +1,7 @@
-import { CART_ADD_ITEM, CART_REMOVE_ITEM } from '../actions/types'
+import { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_SHIPPING_ADDRESS } from '../actions/types'
 
 
-export const cartReducer = (state = { cartItems: [] }, action) => {
+export const cartReducer = (state = { cartItems: [], shippingAddress: {} }, action) => {
 
     const { type, payload } = action
 
@@ -27,6 +27,11 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
             return {
                 ...state,
                 cartItems: state.cartItems.filter(x => x.product !== payload)
+            }
+        case CART_SHIPPING_ADDRESS:
+            return {
+                ...state,
+                shippingAddress: payload
             }
         default:
             return state
