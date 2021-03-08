@@ -6,8 +6,9 @@ import Order from '../models/orderModel.js'
 //@desc  Create New ORder
 //@route  POST /api/orders
 //@access  private Route
-const addOrderItem = asyncHandler(async (req, res) => {
-    const { orderItems, shippingAddress,
+const addOrderItems = asyncHandler(async (req, res) => {
+    const { orderItems,
+        shippingAddress,
         paymentMethod,
         itemsPrice,
         taxPrice,
@@ -20,7 +21,9 @@ const addOrderItem = asyncHandler(async (req, res) => {
         return
     } else {
         const order = new Order({
-            orderItems, shippingAddress,
+            orderItems,
+            user: req.user._id,
+            shippingAddress,
             paymentMethod,
             itemsPrice,
             taxPrice,
@@ -33,9 +36,7 @@ const addOrderItem = asyncHandler(async (req, res) => {
         res.status(201).json(createdOrder)
     }
 
-
-    res.json(products)
 })
 
 
-export { addOrderItem }
+export { addOrderItems }
