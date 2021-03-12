@@ -30,8 +30,11 @@ const OrderScreen = ({ match }) => {
             addDecimals(order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0))
     }
     useEffect(() => {
-        dispatch(getOrderDetails(orderId))
-    }, [])
+        if (!order || order._id !== orderId) {
+            dispatch(getOrderDetails(orderId))
+        }
+
+    }, [order, orderId])
 
 
 
