@@ -11,7 +11,8 @@ import {
     ORDER_PAY_REQUEST,
     ORDER_LIST_MY_REQUEST,
     ORDER_LIST_MY_SUCCESS,
-    ORDER_LIST_MY_FAIL
+    ORDER_LIST_MY_FAIL,
+    ORDER_LIST_MY_RESET
 } from '../actions/types'
 
 export const orderCreateReducer = (state = {}, action) => {
@@ -114,6 +115,10 @@ export const orderListMyReducer = (state = { orders: [] }, action) => {
             return {
                 loading: false,
                 error: payload
+            }
+        case ORDER_LIST_MY_RESET:
+            return {
+                orders: []
             }
         default:
             return state
