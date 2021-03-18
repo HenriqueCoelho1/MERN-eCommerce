@@ -91,15 +91,6 @@ const UserEditScreen = ({ match, history }) => {
 
                 )}
 
-
-                {/* <Row className='py-3'>
-                    <Col>
-                        Have an account?{' '}
-                        <Link to={redirect ? `/login?redirect=${redirect}`
-                            : '/login'}>Login</Link>
-                    </Col>
-
-                </Row> */}
             </FormContainer>
         </>
 
