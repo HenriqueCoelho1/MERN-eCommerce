@@ -1,10 +1,12 @@
 import asyncHandler from 'express-async-handler'
 import Order from '../models/orderModel.js'
+// import Product from '../models/productModel.js'
 
 // @desc    Create new order
 // @route   POST /api/orders
 // @access  Private
 const addOrderItems = asyncHandler(async (req, res) => {
+    // const product  = await Product.findById(req.params.id)
     const {
         orderItems,
         shippingAddress,
@@ -14,6 +16,12 @@ const addOrderItems = asyncHandler(async (req, res) => {
         shippingPrice,
         totalPrice,
     } = req.body
+
+    // if(product){
+
+    //     res.status(400)
+    //     throw new Error('Item out of stock')
+    // }
 
     if (orderItems && orderItems.length === 0) {
         res.status(400)
