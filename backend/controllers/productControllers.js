@@ -35,6 +35,17 @@ const getProductById = asyncHandler(async (req, res) => {
     }
 })
 
+
+// @desc    Get top rated products
+// @route   GET /api/products/top
+// @access  Public
+const getTopProducts = asyncHandler(async (req, res) => {
+    const products = await Product.find({}).sort({ rating: -1 }).limit(3)
+
+    res.json(products)
+})
+
+
 // @desc    Delete a product
 // @route   DELETE /api/products/:id
 // @access  Private/Admin
@@ -150,4 +161,12 @@ const createProductReview = asyncHandler(async (req, res) => {
 
 
 
-export { getProducts, getProductById, deleteProduct, createProduct, updateProduct, createProductReview }
+export {
+    getProducts,
+    getProductById,
+    deleteProduct,
+    createProduct,
+    updateProduct,
+    createProductReview,
+    getTopProducts
+}
